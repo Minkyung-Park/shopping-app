@@ -1,46 +1,73 @@
-# Getting Started with Create React App
+# 1. 동기와 비동기 이해하기
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1.1 API 서버에서 상품 목록 가져오기
 
-## Available Scripts
+- fetch 함수 사용
 
-In the project directory, you can run:
+```js
+fetch("API 주소(http://localhost:3090/product)")
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
 
-### `npm start`
+- Promise
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  - 비동기 작업이 완료, 실패했을 때를 처리하기 위한 객체
+  - 자바스크립트 내장 객체로서 "대기", "이행", "거부"의 상태로 표현할 수 있다
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- fetch 함수가 반환하는 값은 Promise 인스턴스이다
+- Promise 인스턴스에서 사용할 수 있는 메서드는 then, catch, finally가 있다
+- 그 중에 then 메서드는 Promise의 상태가 "이행", "거부" 상태가 되었을 때 실행된다
+- 즉, 비동기 작업이 처리되었을 때 실행된다
+- 이 때 then 메서드 또한 Promise 인스턴스를 반환하기 때문에 .then(...).then(...) 형식으로 함수를 연결해서 사용할 수 있다
 
-### `npm test`
+# 1. UX설계를 위한 휴리스틱 평가 (제이콥닐슨 10문항)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 1.1 상태안내
 
-### `npm run build`
+- 시스템은 적절한 시간과 피드백으로 사용자에게 진행사항을 알려줘야한다.
+- 로딩 바, 스피너 등
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 1.2 친숙한 단어와 문구 사용
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 전문 용어는 최대한 줄이고 사용자에게 친숙한 단어를 사용해야한다.
+- 404 NotFound
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 1.3 쉬운 복구
 
-### `npm run eject`
+- 사용자는 자신의 실수를 금세 바로잡을 수 있어야한다.
+- 애초에 사용자는 당연히 실수를 한다고 가정해야한다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 1.4 일관성과 기준
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- UI 문구나 인터랙션 등이 페이지마다 달라서는 안된다. 디자인 시스템과 같은 기준이 필요하다
+- 빨간색 "확인" 버튼이 다른 페이지에서는 끄는 버튼이 되서는 안된다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 1.5 에러 예방
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- 사용자의 예기치않은 실수로 원치 않은 결과가 나올 수 있다면
+- 사용자가 즉각 인지할 수 있는 장치가 마련되어야한다.
+- 글을 작성한 후 저장 또는 업로드 없이 페이지에서 이탈할 때 경고창 띄우기
 
-## Learn More
+## 1.6 기억보다 직관
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- 사용자가 기능을 익힐 필요 없이 직관적으로 이해할 수 있어야 한다.
+- 아이콘, 텍스트 등
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 1.7 사용 효율성 (서비스의 규모가 커졌을 때 고려)
+
+- 숙련 사용자를 배려해 효율성 높은 고급기능을 마련해야한다.
+- 즐겨찾기, 자주쓰는 메뉴 모음, 단축키, 순서 등
+
+## 1.8 심미적이고 미니멀한 디자인
+
+- 화면이 지향하는 가치와 관계없는 디자인 요소는 모두 배제해야한다.
+- 관계없는 요소를 제거하면 화면이 점점 기능적이고 심미적으로 바뀔 것이다.
+
+## 1.9 명확한 에러 문구
+
+- 에러 문구는 쉽고 명확하게 표현해야 하고 해결책을 빠르게 제공해야 한다.
+
+## 1.10 도움말
+
+- 사용자가 어떤 기능을 사용하던 중 문제에 직면했을 때 해당 기능에 대한 설명을 쉽고 빠르게 찾아볼 수 있어야한다.
