@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createProduct } from "../api/productCreateApi";
+import Button from "./common/Button";
 
 const Create = () => {
   const navigate = useNavigate();
@@ -50,9 +51,7 @@ const Create = () => {
       <div>
         <div>상품을 성공적으로 추가하였습니다.</div>
         <div>확인을 누르면 상품 목록 페이지로 이동합니다.</div>
-        <button type="button" onClick={handleMoveListPage}>
-          확인
-        </button>
+        <Button onClick={handleMoveListPage}>확인</Button>
       </div>
     );
   }
@@ -83,7 +82,7 @@ const Create = () => {
           onChange={handleExplanationChange}
         />
         <br />
-        <input type="submit" value="상품 정보 등록하기" />
+        <Button label="상품 정보 등록하기" />
       </form>
     </div>
   );

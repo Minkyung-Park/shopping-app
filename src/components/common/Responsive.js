@@ -1,0 +1,22 @@
+import styled from "@emotion/styled";
+import React from "react";
+
+const ResponsiveStyle = styled.div`
+  margin: 20px auto;
+  padding: 0px 1rem;
+  width: ${props => props.width || "1200px"};
+
+  @media screen and (max-width: 1024px) {
+    width: 768px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+const Responsive = ({ children, ...props }) => {
+  return <ResponsiveStyle {...props}>{children}</ResponsiveStyle>;
+};
+
+export default Responsive;

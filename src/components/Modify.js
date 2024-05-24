@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -6,6 +7,7 @@ import {
   modifyProduct,
 } from "../api/productModifyApi";
 import useModal from "../hooks/useModal";
+import Button from "./common/Button";
 import Modal from "./common/Modal";
 
 const initState = {
@@ -127,12 +129,9 @@ const Modify = () => {
           onChange={e => handleChange(e)}
         />
         <br />
-        <input type="submit" value="상품 수정하기" />
+        <Button label="상품 수정하기" />
       </form>
-      <button type="button" onClick={handleDelete}>
-        상품 삭제하기
-      </button>
-
+      <Button label="상품 삭제하기" onClick={handleDelete} />
       {/* 모달 관련 */}
       <Modal
         isOpen={isModalOpen}
