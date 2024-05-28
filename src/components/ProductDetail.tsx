@@ -5,16 +5,16 @@ import useCart from "../hooks/useCart";
 import useModal from "../hooks/useModal";
 import Modal from "./common/Modal";
 import Button from "./common/Button";
-import styled from "@emotion/styled";
+import { ProductType } from "../types";
 
 const ProductDetail = () => {
   const navigate = useNavigate();
-  const { productId } = useParams();
+  const { productId } = useParams<{ productId: string }>();
   const { addCarts } = useCart();
   const { isModalOpen, modalMessage, confirmAction, openModal, closeModal } =
     useModal();
 
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState<ProductType | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleMoveModifyPage = () => {
@@ -72,9 +72,7 @@ const ProductDetail = () => {
       <div>{product.explanation}</div>
 
       <Button label="상품 수정하기" onClick={handleMoveModifyPage} />
-
       <Button label="상품 구매하기" onClick={handleMovePurchasePage} />
-
       <Button label="장바구니에 담기" onClick={handleCartAdd} />
 
       {/* 모달 관련 */}
@@ -82,7 +80,8 @@ const ProductDetail = () => {
         isOpen={isModalOpen}
         message={modalMessage}
         onClose={closeModal}
-        onConfirm={confirmAction}
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        onConfirm={confirmAction || (() => {})}
       />
     </div>
   );

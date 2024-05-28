@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import styled from "@emotion/styled";
 import { colorArr, colorSystem } from "../../styles/color";
 
@@ -24,7 +24,12 @@ const ButtonStyle = styled.button`
   }
 `;
 
-const Button = ({ label = "버튼", onClick }) => {
+interface Props {
+  label: string;
+  onClick?: () => void;
+}
+
+const Button = ({ label = "버튼", onClick }: Props) => {
   return <ButtonStyle onClick={onClick}>{label}</ButtonStyle>;
 };
 
